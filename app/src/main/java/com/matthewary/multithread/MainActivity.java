@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar progressBar = null;
     private File file;
     private static Context context;
+    private int prog = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
     public void create(View view) {
         new Thread(new Runnable() {
             public void run() {
-
                 try {
                     // Returns true if file was made.
                     if (file.createNewFile()) {
@@ -103,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
 
                     if(fileOutput.ready()) {
                         BufferedReader br = new BufferedReader(fileOutput);
-                        int prog = 0;
                         String line;
                         while ((line = br.readLine()) != null) {
                             fileLines.add(line);
