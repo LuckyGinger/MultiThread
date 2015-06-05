@@ -8,10 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.WrapperListAdapter;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -126,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
                         br.close();
                         arrayAdapter = new ArrayAdapter<String>(context,
-                                android.R.layout.simple_list_item_1, fileLines);
+                                R.layout.list_view, fileLines);
                         listView = (ListView) findViewById(R.id.listView);
                         runOnUiThread(new Runnable() {
                             public void run() {
