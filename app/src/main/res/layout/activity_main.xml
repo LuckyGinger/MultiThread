@@ -11,38 +11,45 @@
         android:layout_height="wrap_content"
         android:id="@+id/progressBar"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:indeterminate="false"
+        android:progress="0" />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listView"
         android:layout_below="@+id/progressBar"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/create" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Clear"
-        android:id="@+id/button"
+        android:id="@+id/clear"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="53dp"
+        android:onClick="clear" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Load"
-        android:id="@+id/button2"
-        android:layout_above="@+id/button"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button" />
+        android:id="@+id/load"
+        android:layout_above="@+id/clear"
+        android:layout_alignLeft="@+id/clear"
+        android:layout_alignStart="@+id/clear"
+        android:onClick="load" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Create"
-        android:id="@+id/button3"
-        android:layout_above="@+id/button2"
-        android:layout_alignRight="@+id/button2"
-        android:layout_alignEnd="@+id/button2" />
+        android:id="@+id/create"
+        android:layout_above="@+id/load"
+        android:layout_alignRight="@+id/load"
+        android:layout_alignEnd="@+id/load"
+        android:onClick="create" />
 </RelativeLayout>
