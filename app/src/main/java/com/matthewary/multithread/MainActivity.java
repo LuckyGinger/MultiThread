@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private File file;
     private static Context context;
     private int prog = 0;
+    private ArrayAdapter<String> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,19 +97,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void load(View view) {
-        new Thread(new Runnable() {
+        new Thread (new Runnable() {
             public void run() {
                 try {
                     FileReader fileOutput = new FileReader(file);
 
-                    if(fileOutput.ready()) {
+                    if (fileOutput.ready()) {
                         BufferedReader br = new BufferedReader(fileOutput);
                         String line;
                         while ((line = br.readLine()) != null) {
                             fileLines.add(line);
-                            if(prog < 100) {
+                            if (prog < 100) {
                                 prog += 10;
-                                handler.post(new Runnable() {
+                                runOnUiThread(new Runnable() {
                                     public void run() {
                                         progressBar.setProgress(prog);
                                     }
@@ -124,17 +125,22 @@ public class MainActivity extends AppCompatActivity {
                         progressBar.setProgress(0);
 
                         br.close();
-                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(context,
+                        arrayAdapter = new ArrayAdapter<String>(context,
                                 android.R.layout.simple_list_item_1, fileLines);
                         listView = (ListView) findViewById(R.id.listView);
-                        listView.setAdapter(arrayAdapter);
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                listView.setAdapter(arrayAdapter);
+                            }
+                        });
+
+
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }).start();
-
     }
 
     public void clear(View view) {
